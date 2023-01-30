@@ -1,0 +1,21 @@
+# Importing Data
+Name <- c("Jeb", "Donald", "Ted", "Marco", "Carly", "Hillary", "Berine")
+ABCPoliticalPollResults <- c(4, 62, 51, 21, 2, 14, 15)
+CBSPoliticalPollResults <- c(12, 75, 43, 19, 1, 21, 19) 
+
+# Putting Data into a Data Frame so each name is associated with a poll result
+PollResults <- data.frame(Name, ABCPoliticalPollResults, CBSPoliticalPollResults)
+
+# Means of Individual Polls
+mean(PollResults$ABCPoliticalPollResults)
+mean(PollResults$CBSPoliticalPollResults)
+
+# Mean of all Polls
+PollMean1 <- mean(PollResults$ABCPoliticalPollResults)
+PollMean2 <- mean(PollResults$CBSPoliticalPollResults)
+(PollMean2 + PollMean1) / 2
+
+# Mean of a specific Name and its row ID
+rowMeans(PollResults[which(PollResults$Name == "Ted"),2:3])
+
+
