@@ -1,0 +1,21 @@
+# Load Libraries
+library("ggplot2")
+
+# Load info into variables
+Frequency <- c(0.6,0.3,0.4,0.4,0.2,0.6,0.3,0.4,0.9,0.2)
+BP <- c(103,87,32,42,59,109,78,205,135,176)
+First <- c(1,1,1,1,0,0,0,0,NA,1)
+Second <- c(0,0,1,1,0,0,1,1,1,1)
+FinalDecision <- c(0,1,0,1,0,1,0,1,1,1)
+
+# Load info into a data frame
+hospitalData <- data.frame(Frequency, BP, First, Second, FinalDecision)
+
+# Create a side by side histogram and boxplot (Final descision of 0 = no care, 1 = immediate care)
+ggplot(hospitalData) +
+  geom_histogram(aes(y = BP, group = factor(FinalDecision), fill = factor(FinalDecision))) +
+  geom_boxplot(aes(y = BP, group = factor(FinalDecision), fill = factor(FinalDecision))) 
+
+# Calculate the mean of the final decisions, over 0.5 means more often they required immediate care
+mean(FinalDecision)
+
