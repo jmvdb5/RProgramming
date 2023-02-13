@@ -1,0 +1,16 @@
+# Input Data
+A <- matrix(1:100, nrow=10)  
+B <- matrix(1:1000, nrow=10)
+
+# Print Data
+A
+B
+
+# Find Determinants
+det(A)
+det(B)
+
+# More math on Matrix A
+a <- t(A)
+A %*% a
+a %*% A
