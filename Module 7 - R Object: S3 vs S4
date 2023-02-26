@@ -1,0 +1,97 @@
+#################
+##    Step 1   ##
+##  Make data  ##
+#################
+
+
+# Making sample data
+elementNames <- c("Hydrogen", "Helium", "Lithium")
+elementNumbers <- c(1, 2, 3)
+elementMasses <- c(1.0079, 4.0026, 6.9410)
+elements <- data.frame(elementNames, elementNumbers, elementMasses)
+
+
+
+##     s3      ##
+
+# Make class and function to support the class
+elementS3 = function(elementName, elementNumber, elementMass) {
+  if(elementNumber<1 || elementNumber>102) stop("Element Number must be a real element between 1 and 102")
+  value = list(name = elementName, number = elementNumber, mass = elementMass)
+  
+  attr(value, "class") = "element"
+  value
+}
+
+test <- function(obj){
+  UseMethod("test")
+}
+
+
+
+##     s4      ##
+
+# Make Class and Method
+setClass("elementS4",
+           representation(
+             name = "character",
+             number = "numeric",
+             mass = "numeric"
+           )
+)
+
+setMethod("show",
+          "elementS4",
+          function(object){
+            cat(object@name, " Element\n")
+            cat(object@number, "is the numeric number\n")
+            cat("Mass: ", object@mass, "\n")
+          }
+)
+
+setGeneric("elementS4",
+          function(object){
+            cat(object@name, object@number, object@mass)
+          }
+)
+
+
+##################
+##    Step 2    ##
+## Test Modules ##
+##################
+
+head(elements, 2)
+list(elements, 2)
+attributes(elements)
+show(elements)
+
+
+##      s3      ##
+
+# Test if it follows the rules set before
+sampleS3 <- elementS3("Hydrogen", 0, 1.0079)
+
+# Add elements and look at attributes
+sampleS3.1 <- elementS3("Hydrogen", 1, 1.0079)
+sampleS3.2 <- elementS3("Helium", 2, 4.0026)
+attributes(sampleS3.1)
+
+sampleS3.1
+
+
+##      s4      ##
+
+# Make a new element and test the s4 method
+sampleS4.1 <- new("elementS4", name = "Hydrogen", number = 1, mass = 1.0079)
+sampleS4.1@name
+sampleS4.2 <- new("elementS4", name = "Helium", number = 2, mass = 4.0026)
+sampleS4.2@name
+
+attributes(sampleS4.1)
+
+# Test the setMethod() example
+show(sampleS4.1)
+
+# Test the setGeneric() example
+elementS4(sampleS4.2)
