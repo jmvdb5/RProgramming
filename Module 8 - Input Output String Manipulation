@@ -1,0 +1,39 @@
+
+# Step 1 #
+
+# Packages
+require(pryr)
+require(ISLR)
+require(boot)
+library(data.table)
+library(plyr)
+library(dplyr)
+
+# Read data
+data <- read.table("Assignment 6 Dataset.txt", header = TRUE, sep = ",")
+data
+StudentAverage <- ddply(data,"Sex",transform,Grade.Average=mean(Grade))
+
+# By making another variable, SexBinary, we can now take the mean of the sexes
+data$SexBinary <- ifelse(data$Sex == "Male", 1, 0)
+
+# Finding the mean, Closer to 0 means more female, 1 means more male
+sex = data$SexBinary
+mean(sex)
+
+
+
+# Step 2 #
+
+# Write names with an I to a new data frame
+i_names <- data[grep("i", data$Name), ]
+
+# Write those names to a csv file
+write.csv(i_names$Name, file = "i_names.csv", row.names = FALSE)
+
+
+
+# Step 3 #
+
+# Write the data frame to a csv
+write.csv(data, file = "data.csv", row.names = FALSE)
