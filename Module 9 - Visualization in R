@@ -17,3 +17,8 @@ boxplot(weight ~ Diet, data = ChickWeight,
 plot(ChickWeight$Time, ChickWeight$weight, 
      xlab = "Time (days)", ylab = "Weight (grams)", 
      main = "Weight vs. Time for All Chickens")
+
+# Scatter plot with color
+library(ggplot2)
+ggplot(ChickWeight) +
+  geom_point(aes(x = Time, y = weight, color = Diet))
