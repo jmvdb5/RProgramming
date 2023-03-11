@@ -1,0 +1,19 @@
+# Load the dataset
+data("ChickWeight")
+
+# Create a line graph of weight over time for one of the chickens
+chick <- 1
+plot(ChickWeight$Time[ChickWeight$Chick == chick], 
+     ChickWeight$weight[ChickWeight$Chick == chick], 
+     type = "l", xlab = "Time (days)", ylab = "Weight (grams)", 
+     main = paste0("Weight Over Time for Chicken ", chick))
+
+# Create a box plot of weight by diet
+boxplot(weight ~ Diet, data = ChickWeight, 
+        xlab = "Diet", ylab = "Weight (grams)", 
+        main = "Distribution of Weight by Diet")
+
+# Create a scatter plot of weight by time
+plot(ChickWeight$Time, ChickWeight$weight, 
+     xlab = "Time (days)", ylab = "Weight (grams)", 
+     main = "Weight vs. Time for All Chickens")
