@@ -1,0 +1,8 @@
+Package: VanDenBosch
+Title: Becomes A package
+Version: 0.01
+Authors@R: "Jared Van Den Bosch <jared.vandenbosch@gmail.com> [aut, cre]"
+Description: This package is a description of a package
+Depends: R (>= 4.2)
+License: CC0
+LazyData: true
